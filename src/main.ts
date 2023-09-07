@@ -1,5 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { ValidationPipe } from '@nestjs/common';
 
 /**
  * 应用程序入口文件
@@ -13,10 +14,11 @@ async function bootstrap() {
      */
     const app = await NestFactory.create(AppModule);
 
-    /**
-     * 启动 HTTP 侦听器，它让应用程序等待入站 HTTP 请求
-     */
+    // 启动 HTTP 侦听器，它让应用程序等待入站 HTTP 请求
     await app.listen(3000);
+
+    // 校验器
+    app.useGlobalPipes(new ValidationPipe());
 }
 
 bootstrap();

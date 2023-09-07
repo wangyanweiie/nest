@@ -23,10 +23,9 @@ export class UserService {
      */
     async create(createUserDto: CreateUserDto) {
         // 生成新增时间与更新时间
-        const createtime = dayjs().format('YYYY-MM-DD HH:mm:ss');
-        const updatetime = dayjs().format('YYYY-MM-DD HH:mm:ss');
-        createUserDto.createtime = createtime;
-        createUserDto.updatetime = updatetime;
+        const datetime = dayjs().format('YYYY-MM-DD HH:mm:ss');
+        createUserDto.createtime = datetime;
+        createUserDto.updatetime = datetime;
 
         const user = await this.userRepository.save(createUserDto);
         return this.userRepository.save(user);
@@ -50,6 +49,10 @@ export class UserService {
             id: id,
         });
 
+        if (!user) {
+            throw new Error(`未找到该用户数据`);
+        }
+
         return user;
     }
 
@@ -58,8 +61,8 @@ export class UserService {
      * @returns
      */
     async update(id: number, updateUserDto: UpdateUserDto) {
-        const updatetime = dayjs().format('YYYY-MM-DD HH:mm:ss');
-        updateUserDto.updatetime = updatetime;
+        const datetime = dayjs().format('YYYY-MM-DD HH:mm:ss');
+        updateUserDto.updatetime = datetime;
 
         const user = await this.userRepository.preload({
             id: id,
