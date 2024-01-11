@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('user')
-export class User {
+export class UserEntity {
     // 主键自动增量
     @PrimaryGeneratedColumn()
     id: number;

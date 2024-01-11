@@ -5,7 +5,7 @@ import envConfig from '../config/env';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
-import { PostsModule } from './posts/posts.module';
+import { PostModule } from './post/post.module';
 
 /**
  * 应用程序的根模块
@@ -52,7 +52,7 @@ import { PostsModule } from './posts/posts.module';
         }),
 
         UserModule,
-        PostsModule,
+        PostModule,
     ],
     controllers: [AppController],
     providers: [AppService],

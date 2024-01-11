@@ -1,17 +1,16 @@
-//    posts/posts.entity.ts
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('posts')
-export class PostsEntity {
+@Entity('post')
+export class PostEntity {
     // 主键自动增量
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ length: 50 })
-    title: string;
-
     @Column({ length: 20 })
     author: string;
+
+    @Column({ length: 50 })
+    title: string;
 
     @Column('text')
     content: string;

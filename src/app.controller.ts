@@ -1,4 +1,5 @@
 import { Controller, Get, Put } from '@nestjs/common';
+import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { AppService } from './app.service';
 
 /**
@@ -16,6 +17,7 @@ import { AppService } from './app.service';
  *
  * 如每一个要成为控制器的类，都需要借助 @Controller 装饰器的装饰，该装饰器可以传入一个路径参数，作为访问这个控制器的主路径；
  */
+@ApiTags('公共接口')
 @Controller('app')
 export class AppController {
     constructor(private readonly appService: AppService) {}
