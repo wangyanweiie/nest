@@ -1,10 +1,12 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
+import { TransformInterceptor } from './core/interceptor/transform/transform.interceptor';
+import { HttpExceptionFilter } from './core/filter/http-exception/http-exception.filter';
 
 /**
  * 应用程序入口文件
- * 它使用 NestFactory 用来创建 Nest 应用实例
+ * 它使用核心函数 NestFactory 用来创建 Nest 应用程序的实例
  */
 async function bootstrap() {
     /**
@@ -14,11 +16,20 @@ async function bootstrap() {
      */
     const app = await NestFactory.create(AppModule);
 
-    // 启动 HTTP 侦听器，它让应用程序等待入站 HTTP 请求
-    await app.listen(3000);
+    // 设置全局路由前缀
+    // app.setGlobalPrefix('api');
 
     // 校验器
     app.useGlobalPipes(new ValidationPipe());
+
+    // 注册全局错误的过滤器
+    app.useGlobalInterceptors(new TransformInterceptor());
+
+    // 全局注册拦截器
+    app.useGlobalFilters(new HttpExceptionFilter());
+
+    // 启动 HTTP 侦听器，它让应用程序等待入站 HTTP 请求
+    await app.listen(3000);
 }
 
 bootstrap();

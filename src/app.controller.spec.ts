@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 /**
- * 对于基本控制器的单元测试样例
+ * 针对基本控制器的单元测试样例
  */
 describe('AppController', () => {
     let appController: AppController;

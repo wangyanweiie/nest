@@ -18,14 +18,14 @@ export class UserService {
 
     /**
      * 创建记录
-     * @param createUserDto
+     * @param createUserDto 新增数据
      * @returns
      */
     async create(createUserDto: CreateUserDto) {
         // 生成新增时间与更新时间
         const datetime = dayjs().format('YYYY-MM-DD HH:mm:ss');
-        createUserDto.createtime = datetime;
-        createUserDto.updatetime = datetime;
+        createUserDto.create_time = datetime;
+        createUserDto.update_time = datetime;
 
         const user = await this.userRepository.save(createUserDto);
         return this.userRepository.save(user);
@@ -42,6 +42,7 @@ export class UserService {
 
     /**
      * 返回指定一条记录
+     * @param id 用户 ID
      * @returns
      */
     async findOne(id: number) {
@@ -58,11 +59,13 @@ export class UserService {
 
     /**
      * 更新指定一条记录
+     * @param id 用户 ID
+     * @param updateUserDto 更新数据
      * @returns
      */
     async update(id: number, updateUserDto: UpdateUserDto) {
         const datetime = dayjs().format('YYYY-MM-DD HH:mm:ss');
-        updateUserDto.updatetime = datetime;
+        updateUserDto.update_time = datetime;
 
         const user = await this.userRepository.preload({
             id: id,
@@ -78,6 +81,7 @@ export class UserService {
 
     /**
      * 删除指定一条记录
+     * @param id 用户 ID
      * @returns
      */
     async remove(id: number) {

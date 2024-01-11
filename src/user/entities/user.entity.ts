@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
+@Entity('user')
 export class User {
     // 主键自动增量
     @PrimaryGeneratedColumn()
@@ -8,18 +8,18 @@ export class User {
 
     // 可以设置唯一值
     @Column({ unique: true })
-    userName: string;
+    user_name: string;
 
     @Column()
     password: string;
 
     // 可以设置默认值
     @Column({ default: true })
-    isActive: boolean;
+    is_active: boolean;
 
     @Column({ type: 'timestamp' })
-    createtime: Date;
+    create_time: Date;
 
     @Column({ type: 'timestamp' })
-    updatetime: Date;
+    update_time: Date;
 }

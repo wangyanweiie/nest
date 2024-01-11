@@ -21,18 +21,17 @@ import { UpdateUserDto } from './dto/update-user.dto';
 export class UserController {
     constructor(private readonly userService: UserService) {}
 
-    // 给接口追加子路由
-    @Post('create')
+    @Post()
     create(@Body() createUserDto: CreateUserDto) {
         return this.userService.create(createUserDto);
     }
 
-    @Get('find/all')
+    @Get()
     findAll() {
         return this.userService.findAll();
     }
 
-    @Get('find/one')
+    @Get(':id')
     findOne(@Query('id') id: string) {
         return this.userService.findOne(+id);
     }
