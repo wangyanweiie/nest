@@ -8,6 +8,8 @@ import {
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
     catch(exception: HttpException, host: ArgumentsHost) {
+        console.log('exception', exception);
+
         // 获取请求上下文
         const ctx = host.switchToHttp();
         // 获取请求上下文中的 response对象

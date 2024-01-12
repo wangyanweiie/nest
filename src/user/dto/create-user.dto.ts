@@ -21,14 +21,11 @@ export class CreateUserDto {
 
     // ApiPropertyOptional 装饰可选参数
     @ApiPropertyOptional({ description: '是否在线' })
-    @IsBoolean()
     is_active?: boolean;
 
     @ApiPropertyOptional({ description: '创建时间' })
-    @IsString()
     create_time?: string;
 
     @ApiPropertyOptional({ description: '更新时间' })
-    @IsString()
     update_time?: string;
 }

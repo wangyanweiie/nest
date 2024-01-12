@@ -84,8 +84,10 @@ export class UserService {
      * @param id 用户 ID
      * @returns
      */
-    async remove(id) {
-        const user = await this.userRepository.findOne(id);
+    async remove(id: number) {
+        const user = await this.userRepository.findOneBy({
+            id: id,
+        });
 
         if (!user) {
             throw new Error(`未找到该用户数据`);

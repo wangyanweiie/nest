@@ -24,32 +24,35 @@ export class UserController {
     constructor(private readonly userService: UserService) {}
 
     @ApiOperation({ summary: '创建用户' })
-    @Post()
+    @Post('create')
+    // @Body：类似 query 字符串，只不过是放在 body 中
     create(@Body() createUserDto: CreateUserDto) {
         return this.userService.create(createUserDto);
     }
 
     @ApiOperation({ summary: '获取所有用户' })
-    @Get()
+    @Get('list')
     findAll() {
         return this.userService.findAll();
     }
 
     @ApiOperation({ summary: '获取指定用户' })
-    @Get(':id')
-    findOne(@Query('id') id: number) {
+    @Get('list/:id')
+    // @Param：url 中的参数
+    findOne(@Param('id') id: number) {
         return this.userService.findOne(+id);
     }
 
     @ApiOperation({ summary: '更新指定用户' })
-    @Patch(':id')
-    update(@Param('id') id: number, @Body() updateUserDto: UpdateUserDto) {
+    @Patch('update')
+    // @Query：url 中? 后的字符串
+    update(@Query('id') id: number, @Body() updateUserDto: UpdateUserDto) {
         return this.userService.update(+id, updateUserDto);
     }
 
     @ApiOperation({ summary: '删除指定用户' })
-    @Delete(':id')
-    remove(@Param('id') id: number) {
+    @Delete('delete')
+    remove(@Query('id') id: number) {
         return this.userService.remove(+id);
     }
 }
